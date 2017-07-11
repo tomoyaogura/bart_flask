@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Live Bart Departure Time{% endblock %}
+{% block title %}Broadway Shuttle Day Departure Time{% endblock %}
 
 {% block page_content %}
 <div class="page-header">
@@ -8,12 +8,10 @@
 </div>
 
 <div class="container-fluid">
-{% for line in info %}
-<h1> {{ line }} <h1>
-{% for train in info[line] %}
-<p> {{ train }} <p>
+<h1> Broadway & Thomas L Berkeley Way <h1>
+{% for bus in busses %}
+<p> {{ bus }} <p>
 <br>
-{% endfor %}
 {% endfor %}
 </div>
 

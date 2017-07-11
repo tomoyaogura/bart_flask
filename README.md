@@ -5,10 +5,22 @@ Get BART API Key from http://api.bart.gov/api/register.aspx then enter that in t
 ## Installation
 First, clone this repo.
 
-Start new virtualenv, then install bart_api with
 ```
-cd bart_api
+sudo apt-get install python-lxml
+```
+Start new virtualenv, then install bart_api and nextbus with
+```
 git clone https://github.com/projectdelphai/bart_api
+cd bart_api
+python setup.py install
+# Make it into module
+touch __init__.py
+```
+
+```
+# Need this guy's fork version
+git clone git@github.com:thewellington00/python-nextbus.git
+cd python_nextbus
 python setup.py install
 # Make it into module
 touch __init__.py
