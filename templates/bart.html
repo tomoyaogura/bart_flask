@@ -7,14 +7,46 @@
     <h1>Bart Departure Time</h1>
 </div>
 
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<script type=text/javascript>
+	$(function(){
+		$('a#calculate').bind('click', function() {
+			$.getJSON($SCRIPT_ROOT + '/_add_numbers', {
+				a: $('input[name="a"]').val(),
+				b: $('input[name="b"]').val()
+			}, 	function(data) {
+					var body = "";
+					for (d in data.departures){
+						body += "<h1> " + data.departures[d].destination + "</h1>"
+						for (e in data.departures[d].estimates){
+							body += "<p> " + data.departures[d].estimates[e] + "</p>"
+						}
+						document.getElementById("result").innerHTML = body;
+					}
+
+			});
+			return false;
+		});
+	});
+</script>
+
+<h1>jQuery Example</h1>
+<p><input type=text size=5 name=a> + <input type=text size=5 name=b> = <span id=result>?</span><p><a href=# id=calculate>calculate server side</a>
+
+
+<div class="blog-footer">
+</div> 
+
+
 <div class="container-fluid">
-{% for line in info %}
-<h1> {{ line }} <h1>
-{% for train in info[line] %}
-<p> {{ train }} <p>
-<br>
-{% endfor %}
-{% endfor %}
+<span id=result>?</span>
 </div>
 
 
